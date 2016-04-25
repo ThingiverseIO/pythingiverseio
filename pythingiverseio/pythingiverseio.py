@@ -25,7 +25,7 @@ import msgpack
 import io
 
 def flavour_descriptor(desc, flavour):
-    return desc + '\n' + flavor
+    return desc + '\n' + flavour
 
 def profile_descriptor(desc, profile):
     if type(profile) is list:
@@ -36,7 +36,7 @@ def profile_descriptor(desc, profile):
     return flavour_descriptor(desc, "tag " + profile)
 
 def profile_descriptor_key_value(desc, key, value):
-    return profile_descriptor(key + ":" + value)
+    return profile_descriptor(desc, key + ":" + value)
 
 def version():
     pmaj = libthingiverseio.new_intp()
