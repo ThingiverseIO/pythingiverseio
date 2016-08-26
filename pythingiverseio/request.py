@@ -1,6 +1,5 @@
 from .libthingiverseio import tvio_reply
-import msgpack
-from array import array
+import umsgpack
 
 
 class Request():
@@ -14,10 +13,10 @@ class Request():
         return self._function
 
     def parameter(self):
-        return msgpack.unpackb(self._params)
+        return umsgpack.unpackb(self._params)
 
     def reply(self, params):
-        packed = msgpack.packb(params)
+        packed = umsgpack.packb(params)
         _check_error(tvio_reply(self._output, self._id,
                      packed, len(packed)))
 

@@ -9,7 +9,7 @@ setup(name='pythingiverseio',
       license='lGPLv3',
       packages=['pythingiverseio'],
       install_requires=[
-        'msgpack-python',
+        'u-msgpack-python',
       ],
       test_suite='nose.collector',
       tests_require=['nose'],

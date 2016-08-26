@@ -1,9 +1,8 @@
 from .libthingiverseio import tvio_result_ready, tvio_retrieve_result_params
 from ctypes import c_int, c_void_p, byref, string_at
-import msgpack
+import umsgpack
 import threading
 import time
-# from bytes import bytearray
 
 
 class Result(threading.Thread):
@@ -50,7 +49,7 @@ class Result(threading.Thread):
     def parameter(self):
         if not self._received:
             return None
-        return msgpack.unpackb(self._params)
+        return umsgpack.unpackb(self._params)
 
 
 def _check_error(err):

@@ -14,7 +14,7 @@ from ctypes import c_int, c_char_p, c_void_p, byref, string_at
 from .result import Result
 import threading
 from queue import Queue
-import msgpack
+import umsgpack
 
 
 class Input(threading.Thread):
@@ -87,7 +87,7 @@ class Input(threading.Thread):
         return self._connected
 
     def call(self, function, parameter):
-        packed = msgpack.packb(parameter)
+        packed = umsgpack.packb(parameter)
         uuid = c_char_p()
         uuid_size = c_int()
         err = tvio_call(self._input, c_char_p(function.encode("ascii")),
@@ -100,14 +100,14 @@ class Input(threading.Thread):
         return Result(self, uuid=uuid)
 
     def trigger(self, function, parameter):
-        packed = msgpack.packb(parameter)
+        packed = umsgpack.packb(parameter)
         err = tvio_trigger(self._input, c_char_p(function.encode("ascii")),
                            packed,
                            len(packed))
         _check_error(err)
 
     def trigger_all(self, function, parameter):
-        packed = msgpack.packb(parameter)
+        packed = umsgpack.packb(parameter)
         err = tvio_trigger(self._input, c_char_p(function.encode("ascii")),
                            packed,
                            len(packed))
