@@ -13,10 +13,5 @@ setup(name='pythingiverseio',
       ],
       test_suite='nose.collector',
       tests_require=['nose'],
-      ext_modules=[Extension('_libthingiverseio',
-                             ['pythingiverseio/libthingiverseio.i'],
-                             swig_opts=['-I/usr/include/'],
-                             library_dirs=['/usr/lib/'],
-                             libraries=['thingiverseio'])],
       py_modules=['libthingiverseio']
       )
