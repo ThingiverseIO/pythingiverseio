@@ -26,11 +26,14 @@ class Result(threading.Thread):
     def run(self):
         ready = c_int()
 
-        while not self._received and not self._input._stop.is_set():
+        while True:
             _check_error(tvio_result_ready(self._input._input,
                          self._uuid, byref(ready)))
-            self._received = ready.value is 1
-            time.sleep(0.01)
+            if ready.value is 1:
+                break
+            if self._input._stop.is_set():
+                return
+            time.sleep(0.001)
 
         params = c_void_p()
         params_size = c_int()
@@ -42,9 +45,18 @@ class Result(threading.Thread):
         _check_error(err)
 
         self._params = string_at(params, params_size)
+        self._received = True
 
     def received(self):
         return self._received
+
+    def wait_until_received(self, timeout=1):
+        start = time.time()
+        while not self.received():
+            if time.time() - start >= timeout:
+                return True
+            time.sleep(0.001)
+        return False
 
     def parameter(self):
         if not self._received:

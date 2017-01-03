@@ -15,6 +15,7 @@ from .result import Result
 import threading
 from queue import Queue
 import umsgpack
+import time
 
 
 class Input(threading.Thread):
@@ -85,6 +86,14 @@ class Input(threading.Thread):
 
     def connected(self):
         return self._connected
+
+    def wait_until_connected(self, timeout=None):
+        start = time.time()
+        while not self.connected():
+            if time.time() - start >= timeout:
+                return True
+            time.sleep(0.001)
+        return False
 
     def call(self, function, parameter):
         packed = umsgpack.packb(parameter)
