@@ -1,20 +1,16 @@
-from .libthingiverseio import *
+from .libthingiverseio import tvio_version
+from ctypes import c_int, byref
 
 
 def version():
-    pmaj = new_intp()
-    pmin = new_intp()
-    pfix = new_intp()
+    pmaj = c_int()
+    pmin = c_int()
+    pfix = c_int()
 
-    _check_error(tvio_version(pmaj, pmin, pfix))
+    tvio_version(byref(pmaj), byref(pmin), byref(pfix))
 
-    maj = intp_value(pmaj)
-    delete_intp(pmaj)
-
-    min = intp_value(pmin)
-    delete_intp(pmin)
-
-    fix = intp_value(pfix)
-    delete_intp(pfix)
+    maj = pmaj.value
+    min = pmin.value
+    fix = pfix.value
 
     return maj, min, fix

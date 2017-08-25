@@ -1,4 +1,8 @@
-from .libthingiverseio import tvio_result_ready, tvio_retrieve_result_params
+from .error import _check_error
+from .libthingiverseio import (
+    tvio_input_call_result_available,
+    tvio_input_call_result_params,
+)
 from ctypes import c_int, c_void_p, byref, string_at
 import umsgpack
 import threading
@@ -27,7 +31,7 @@ class Result(threading.Thread):
         ready = c_int()
 
         while True:
-            _check_error(tvio_result_ready(self._input._input,
+            _check_error(tvio_input_call_result_available(self._input._input,
                          self._uuid, byref(ready)))
             if ready.value is 1:
                 break
@@ -37,11 +41,11 @@ class Result(threading.Thread):
 
         params = c_void_p()
         params_size = c_int()
-        err = tvio_retrieve_result_params(self._input._input,
-                                          self._uuid,
-                                          byref(params),
-                                          byref(params_size)
-                                          )
+        err = tvio_input_call_result_params(self._input._input,
+                                            self._uuid,
+                                            byref(params),
+                                            byref(params_size)
+                                            )
         _check_error(err)
 
         self._params = string_at(params, params_size)
@@ -62,8 +66,3 @@ class Result(threading.Thread):
         if not self._received:
             return None
         return umsgpack.unpackb(self._params)
-
-
-def _check_error(err):
-    if err != 0:
-        raise Exception("Tvio Error")

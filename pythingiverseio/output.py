@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with pythingiverseio.  If not, see <http://www.gnu.org/licenses/>.
 
-
+from .error import _check_error
 from .libthingiverseio import (
                                tvio_new_output,
-                               tvio_request_available,
-                               tvio_get_next_request_id,
-                               tvio_retrieve_request_function,
-                               tvio_remove_output,
-                               tvio_retrieve_request_params
+                               tvio_output_remove,
+                               tvio_output_request_available,
+                               tvio_output_request_function,
+                               tvio_output_request_id,
+                               tvio_output_request_params,
                                )
 from ctypes import byref, c_int, c_char_p, c_void_p, string_at
 from .descriptor import check_descriptor
@@ -58,32 +58,32 @@ class Output(threading.Thread):
     def run(self):
         req_available = c_int()
         while not self._stop.is_set():
-            _check_error(tvio_request_available(self._output,
-                                                byref(req_available)))
+            _check_error(tvio_output_request_available(self._output,
+                                                       byref(req_available)))
             if req_available.value is 1:
                 uuid = c_char_p()
                 uuid_size = c_int()
-                err = tvio_get_next_request_id(self._output,
-                                               byref(uuid),
-                                               byref(uuid_size)
-                                               )
+                err = tvio_output_request_id(self._output,
+                                             byref(uuid),
+                                             byref(uuid_size)
+                                             )
                 _check_error(err)
 
                 fun = c_char_p()
                 fun_size = c_int()
-                err = tvio_retrieve_request_function(self._output,
-                                                     uuid,
-                                                     byref(fun),
-                                                     byref(fun_size)
-                                                     )
+                err = tvio_output_request_function(self._output,
+                                                   uuid,
+                                                   byref(fun),
+                                                   byref(fun_size)
+                                                   )
                 _check_error(err)
 
                 params = c_void_p()
                 params_size = c_int()
-                err = tvio_retrieve_request_params(c_int(self._output),
-                                                   uuid,
-                                                   byref(params),
-                                                   byref(params_size))
+                err = tvio_output_request_params(c_int(self._output),
+                                                 uuid,
+                                                 byref(params),
+                                                 byref(params_size))
                 _check_error(err)
 
                 self._request_q.put(Request(self._output, uuid,
@@ -91,15 +91,10 @@ class Output(threading.Thread):
                                             string_at(params, params_size)))
             else:
                 self._stop.wait(0.01)
-        _check_error(tvio_remove_output(self._output))
+        _check_error(tvio_output_remove(self._output))
 
     def remove(self):
         self._stop.set()
 
     def get_request(self, timeout=None):
         return self._request_q.get(timeout=timeout)
-
-
-def _check_error(err):
-    if err != 0:
-        raise Exception("Tvio Error")

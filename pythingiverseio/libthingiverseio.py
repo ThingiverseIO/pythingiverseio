@@ -1,7 +1,7 @@
 '''Wrapper for thingiverseio.h
 
 Generated with:
-ctypesgen/ctypesgen.py -lthingiverseio /usr/include/thingiverseio.h -o pythingiverseio/pythingiverseio/libthingiverseio.py
+../ctypesgen/ctypesgen.py -lthingiverseio /usr/include/thingiverseio.h -o pythingiverseio/libthingiverseio.py
 
 Do not modify this file.
 '''
@@ -718,173 +718,293 @@ _libs["thingiverseio"] = load_library("thingiverseio")
 
 # No modules
 
-# /usr/include/thingiverseio.h: 33
+# /usr/include/thingiverseio.h: 55
 if hasattr(_libs['thingiverseio'], 'tvio_version'):
     tvio_version = _libs['thingiverseio'].tvio_version
     tvio_version.argtypes = [POINTER(c_int), POINTER(c_int), POINTER(c_int)]
-    tvio_version.restype = c_int
+    tvio_version.restype = None
 
-# /usr/include/thingiverseio.h: 44
+# /usr/include/thingiverseio.h: 65
 if hasattr(_libs['thingiverseio'], 'tvio_check_descriptor'):
     tvio_check_descriptor = _libs['thingiverseio'].tvio_check_descriptor
     tvio_check_descriptor.argtypes = [String, POINTER(POINTER(c_char)), POINTER(c_int)]
     tvio_check_descriptor.restype = None
 
-# /usr/include/thingiverseio.h: 53
+# /usr/include/thingiverseio.h: 75
+if hasattr(_libs['thingiverseio'], 'tvio_error_message'):
+    tvio_error_message = _libs['thingiverseio'].tvio_error_message
+    tvio_error_message.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_error_message.restype = None
+
+# /usr/include/thingiverseio.h: 84
 if hasattr(_libs['thingiverseio'], 'tvio_new_input'):
     tvio_new_input = _libs['thingiverseio'].tvio_new_input
     tvio_new_input.argtypes = [String]
     tvio_new_input.restype = c_int
 
-# /usr/include/thingiverseio.h: 64
-if hasattr(_libs['thingiverseio'], 'tvio_get_input_uuid'):
-    tvio_get_input_uuid = _libs['thingiverseio'].tvio_get_input_uuid
-    tvio_get_input_uuid.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_get_input_uuid.restype = c_int
-
-# /usr/include/thingiverseio.h: 73
-if hasattr(_libs['thingiverseio'], 'tvio_remove_input'):
-    tvio_remove_input = _libs['thingiverseio'].tvio_remove_input
-    tvio_remove_input.argtypes = [c_int]
-    tvio_remove_input.restype = c_int
-
-# /usr/include/thingiverseio.h: 83
-if hasattr(_libs['thingiverseio'], 'tvio_connected'):
-    tvio_connected = _libs['thingiverseio'].tvio_connected
-    tvio_connected.argtypes = [c_int, POINTER(c_int)]
-    tvio_connected.restype = c_int
-
 # /usr/include/thingiverseio.h: 93
-if hasattr(_libs['thingiverseio'], 'tvio_start_listen'):
-    tvio_start_listen = _libs['thingiverseio'].tvio_start_listen
-    tvio_start_listen.argtypes = [c_int, String]
-    tvio_start_listen.restype = c_int
+if hasattr(_libs['thingiverseio'], 'tvio_input_remove'):
+    tvio_input_remove = _libs['thingiverseio'].tvio_input_remove
+    tvio_input_remove.argtypes = [c_int]
+    tvio_input_remove.restype = c_int
 
 # /usr/include/thingiverseio.h: 103
-if hasattr(_libs['thingiverseio'], 'tvio_stop_listen'):
-    tvio_stop_listen = _libs['thingiverseio'].tvio_stop_listen
-    tvio_stop_listen.argtypes = [c_int, String]
-    tvio_stop_listen.restype = c_int
+if hasattr(_libs['thingiverseio'], 'tvio_input_connected'):
+    tvio_input_connected = _libs['thingiverseio'].tvio_input_connected
+    tvio_input_connected.argtypes = [c_int, POINTER(c_int)]
+    tvio_input_connected.restype = c_int
 
-# /usr/include/thingiverseio.h: 117
-if hasattr(_libs['thingiverseio'], 'tvio_call'):
-    tvio_call = _libs['thingiverseio'].tvio_call
-    tvio_call.argtypes = [c_int, String, POINTER(None), c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_call.restype = c_int
+# /usr/include/thingiverseio.h: 114
+if hasattr(_libs['thingiverseio'], 'tvio_input_uuid'):
+    tvio_input_uuid = _libs['thingiverseio'].tvio_input_uuid
+    tvio_input_uuid.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_uuid.restype = c_int
 
-# /usr/include/thingiverseio.h: 131
-if hasattr(_libs['thingiverseio'], 'tvio_call_all'):
-    tvio_call_all = _libs['thingiverseio'].tvio_call_all
-    tvio_call_all.argtypes = [c_int, String, POINTER(None), c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_call_all.restype = c_int
+# /usr/include/thingiverseio.h: 125
+if hasattr(_libs['thingiverseio'], 'tvio_input_interface'):
+    tvio_input_interface = _libs['thingiverseio'].tvio_input_interface
+    tvio_input_interface.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_interface.restype = c_int
 
-# /usr/include/thingiverseio.h: 143
-if hasattr(_libs['thingiverseio'], 'tvio_trigger'):
-    tvio_trigger = _libs['thingiverseio'].tvio_trigger
-    tvio_trigger.argtypes = [c_int, String, POINTER(None), c_int]
-    tvio_trigger.restype = c_int
+# /usr/include/thingiverseio.h: 139
+if hasattr(_libs['thingiverseio'], 'tvio_input_call'):
+    tvio_input_call = _libs['thingiverseio'].tvio_input_call
+    tvio_input_call.argtypes = [c_int, String, POINTER(None), c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_call.restype = c_int
 
-# /usr/include/thingiverseio.h: 155
-if hasattr(_libs['thingiverseio'], 'tvio_trigger_all'):
-    tvio_trigger_all = _libs['thingiverseio'].tvio_trigger_all
-    tvio_trigger_all.argtypes = [c_int, String, POINTER(None), c_int]
-    tvio_trigger_all.restype = c_int
+# /usr/include/thingiverseio.h: 153
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_all'):
+    tvio_input_call_all = _libs['thingiverseio'].tvio_input_call_all
+    tvio_input_call_all.argtypes = [c_int, String, POINTER(None), c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_call_all.restype = c_int
 
-# /usr/include/thingiverseio.h: 166
-if hasattr(_libs['thingiverseio'], 'tvio_result_ready'):
-    tvio_result_ready = _libs['thingiverseio'].tvio_result_ready
-    tvio_result_ready.argtypes = [c_int, String, POINTER(c_int)]
-    tvio_result_ready.restype = c_int
+# /usr/include/thingiverseio.h: 165
+if hasattr(_libs['thingiverseio'], 'tvio_input_trigger'):
+    tvio_input_trigger = _libs['thingiverseio'].tvio_input_trigger
+    tvio_input_trigger.argtypes = [c_int, String, POINTER(None), c_int]
+    tvio_input_trigger.restype = c_int
 
-# /usr/include/thingiverseio.h: 178
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_result_params'):
-    tvio_retrieve_result_params = _libs['thingiverseio'].tvio_retrieve_result_params
-    tvio_retrieve_result_params.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
-    tvio_retrieve_result_params.restype = c_int
+# /usr/include/thingiverseio.h: 177
+if hasattr(_libs['thingiverseio'], 'tvio_input_trigger_all'):
+    tvio_input_trigger_all = _libs['thingiverseio'].tvio_input_trigger_all
+    tvio_input_trigger_all.argtypes = [c_int, String, POINTER(None), c_int]
+    tvio_input_trigger_all.restype = c_int
 
 # /usr/include/thingiverseio.h: 188
-if hasattr(_libs['thingiverseio'], 'tvio_listen_result_available'):
-    tvio_listen_result_available = _libs['thingiverseio'].tvio_listen_result_available
-    tvio_listen_result_available.argtypes = [c_int, POINTER(c_int)]
-    tvio_listen_result_available.restype = c_int
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_result_available'):
+    tvio_input_call_result_available = _libs['thingiverseio'].tvio_input_call_result_available
+    tvio_input_call_result_available.argtypes = [c_int, String, POINTER(c_int)]
+    tvio_input_call_result_available.restype = c_int
 
-# /usr/include/thingiverseio.h: 199
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_listen_result_id'):
-    tvio_retrieve_listen_result_id = _libs['thingiverseio'].tvio_retrieve_listen_result_id
-    tvio_retrieve_listen_result_id.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_retrieve_listen_result_id.restype = c_int
+# /usr/include/thingiverseio.h: 200
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_result_params'):
+    tvio_input_call_result_params = _libs['thingiverseio'].tvio_input_call_result_params
+    tvio_input_call_result_params.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_call_result_params.restype = c_int
 
 # /usr/include/thingiverseio.h: 210
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_listen_result_function'):
-    tvio_retrieve_listen_result_function = _libs['thingiverseio'].tvio_retrieve_listen_result_function
-    tvio_retrieve_listen_result_function.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_retrieve_listen_result_function.restype = c_int
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_start'):
+    tvio_input_listen_start = _libs['thingiverseio'].tvio_input_listen_start
+    tvio_input_listen_start.argtypes = [c_int, String]
+    tvio_input_listen_start.restype = c_int
 
-# /usr/include/thingiverseio.h: 221
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_listen_result_params'):
-    tvio_retrieve_listen_result_params = _libs['thingiverseio'].tvio_retrieve_listen_result_params
-    tvio_retrieve_listen_result_params.argtypes = [c_int, POINTER(POINTER(None)), POINTER(c_int)]
-    tvio_retrieve_listen_result_params.restype = c_int
+# /usr/include/thingiverseio.h: 220
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_stop'):
+    tvio_input_listen_stop = _libs['thingiverseio'].tvio_input_listen_stop
+    tvio_input_listen_stop.argtypes = [c_int, String]
+    tvio_input_listen_stop.restype = c_int
 
-# /usr/include/thingiverseio.h: 233
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_next_call_all_result_params'):
-    tvio_retrieve_next_call_all_result_params = _libs['thingiverseio'].tvio_retrieve_next_call_all_result_params
-    tvio_retrieve_next_call_all_result_params.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
-    tvio_retrieve_next_call_all_result_params.restype = c_int
+# /usr/include/thingiverseio.h: 230
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_result_available'):
+    tvio_input_listen_result_available = _libs['thingiverseio'].tvio_input_listen_result_available
+    tvio_input_listen_result_available.argtypes = [c_int, POINTER(c_int)]
+    tvio_input_listen_result_available.restype = c_int
 
-# /usr/include/thingiverseio.h: 242
+# /usr/include/thingiverseio.h: 241
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_result_id'):
+    tvio_input_listen_result_id = _libs['thingiverseio'].tvio_input_listen_result_id
+    tvio_input_listen_result_id.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_listen_result_id.restype = c_int
+
+# /usr/include/thingiverseio.h: 252
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_result_function'):
+    tvio_input_listen_result_function = _libs['thingiverseio'].tvio_input_listen_result_function
+    tvio_input_listen_result_function.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_listen_result_function.restype = c_int
+
+# /usr/include/thingiverseio.h: 263
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_result_request_params'):
+    tvio_input_listen_result_request_params = _libs['thingiverseio'].tvio_input_listen_result_request_params
+    tvio_input_listen_result_request_params.argtypes = [c_int, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_listen_result_request_params.restype = c_int
+
+# /usr/include/thingiverseio.h: 274
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_result_params'):
+    tvio_input_listen_result_params = _libs['thingiverseio'].tvio_input_listen_result_params
+    tvio_input_listen_result_params.argtypes = [c_int, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_listen_result_params.restype = c_int
+
+# /usr/include/thingiverseio.h: 283
+if hasattr(_libs['thingiverseio'], 'tvio_input_listen_result_clear'):
+    tvio_input_listen_result_clear = _libs['thingiverseio'].tvio_input_listen_result_clear
+    tvio_input_listen_result_clear.argtypes = [c_int]
+    tvio_input_listen_result_clear.restype = c_int
+
+# /usr/include/thingiverseio.h: 294
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_all_next_result_available'):
+    tvio_input_call_all_next_result_available = _libs['thingiverseio'].tvio_input_call_all_next_result_available
+    tvio_input_call_all_next_result_available.argtypes = [c_int, POINTER(c_int)]
+    tvio_input_call_all_next_result_available.restype = c_int
+
+# /usr/include/thingiverseio.h: 306
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_all_next_result_params'):
+    tvio_input_call_all_next_result_params = _libs['thingiverseio'].tvio_input_call_all_next_result_params
+    tvio_input_call_all_next_result_params.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_call_all_next_result_params.restype = c_int
+
+# /usr/include/thingiverseio.h: 316
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_all_next_result_clear'):
+    tvio_input_call_all_next_result_clear = _libs['thingiverseio'].tvio_input_call_all_next_result_clear
+    tvio_input_call_all_next_result_clear.argtypes = [c_int, String]
+    tvio_input_call_all_next_result_clear.restype = c_int
+
+# /usr/include/thingiverseio.h: 326
+if hasattr(_libs['thingiverseio'], 'tvio_input_call_all_request_clear'):
+    tvio_input_call_all_request_clear = _libs['thingiverseio'].tvio_input_call_all_request_clear
+    tvio_input_call_all_request_clear.argtypes = [c_int, String]
+    tvio_input_call_all_request_clear.restype = c_int
+
+# /usr/include/thingiverseio.h: 338
+if hasattr(_libs['thingiverseio'], 'tvio_input_property_get'):
+    tvio_input_property_get = _libs['thingiverseio'].tvio_input_property_get
+    tvio_input_property_get.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_property_get.restype = c_int
+
+# /usr/include/thingiverseio.h: 348
+if hasattr(_libs['thingiverseio'], 'tvio_input_property_update'):
+    tvio_input_property_update = _libs['thingiverseio'].tvio_input_property_update
+    tvio_input_property_update.argtypes = [c_int, String]
+    tvio_input_property_update.restype = c_int
+
+# /usr/include/thingiverseio.h: 359
+if hasattr(_libs['thingiverseio'], 'tvio_input_property_update_available'):
+    tvio_input_property_update_available = _libs['thingiverseio'].tvio_input_property_update_available
+    tvio_input_property_update_available.argtypes = [c_int, String, POINTER(c_int)]
+    tvio_input_property_update_available.restype = c_int
+
+# /usr/include/thingiverseio.h: 371
+if hasattr(_libs['thingiverseio'], 'tvio_input_property_update_get'):
+    tvio_input_property_update_get = _libs['thingiverseio'].tvio_input_property_update_get
+    tvio_input_property_update_get.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_property_update_get.restype = c_int
+
+# /usr/include/thingiverseio.h: 381
+if hasattr(_libs['thingiverseio'], 'tvio_input_change_start_observe'):
+    tvio_input_change_start_observe = _libs['thingiverseio'].tvio_input_change_start_observe
+    tvio_input_change_start_observe.argtypes = [c_int, String]
+    tvio_input_change_start_observe.restype = c_int
+
+# /usr/include/thingiverseio.h: 391
+if hasattr(_libs['thingiverseio'], 'tvio_input_change_stop_observe'):
+    tvio_input_change_stop_observe = _libs['thingiverseio'].tvio_input_change_stop_observe
+    tvio_input_change_stop_observe.argtypes = [c_int, String]
+    tvio_input_change_stop_observe.restype = c_int
+
+# /usr/include/thingiverseio.h: 401
+if hasattr(_libs['thingiverseio'], 'tvio_input_change_available'):
+    tvio_input_change_available = _libs['thingiverseio'].tvio_input_change_available
+    tvio_input_change_available.argtypes = [c_int, POINTER(c_int)]
+    tvio_input_change_available.restype = c_int
+
+# /usr/include/thingiverseio.h: 412
+if hasattr(_libs['thingiverseio'], 'tvio_input_change_property'):
+    tvio_input_change_property = _libs['thingiverseio'].tvio_input_change_property
+    tvio_input_change_property.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_input_change_property.restype = c_int
+
+# /usr/include/thingiverseio.h: 424
+if hasattr(_libs['thingiverseio'], 'tvio_input_change_value'):
+    tvio_input_change_value = _libs['thingiverseio'].tvio_input_change_value
+    tvio_input_change_value.argtypes = [c_int, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_input_change_value.restype = c_int
+
+# /usr/include/thingiverseio.h: 433
+if hasattr(_libs['thingiverseio'], 'tvio_input_change_clear'):
+    tvio_input_change_clear = _libs['thingiverseio'].tvio_input_change_clear
+    tvio_input_change_clear.argtypes = [c_int]
+    tvio_input_change_clear.restype = c_int
+
+# /usr/include/thingiverseio.h: 442
 if hasattr(_libs['thingiverseio'], 'tvio_new_output'):
     tvio_new_output = _libs['thingiverseio'].tvio_new_output
     tvio_new_output.argtypes = [String]
     tvio_new_output.restype = c_int
 
-# /usr/include/thingiverseio.h: 253
-if hasattr(_libs['thingiverseio'], 'tvio_get_output_uuid'):
-    tvio_get_output_uuid = _libs['thingiverseio'].tvio_get_output_uuid
-    tvio_get_output_uuid.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_get_output_uuid.restype = c_int
+# /usr/include/thingiverseio.h: 451
+if hasattr(_libs['thingiverseio'], 'tvio_output_remove'):
+    tvio_output_remove = _libs['thingiverseio'].tvio_output_remove
+    tvio_output_remove.argtypes = [c_int]
+    tvio_output_remove.restype = c_int
 
-# /usr/include/thingiverseio.h: 262
-if hasattr(_libs['thingiverseio'], 'tvio_remove_output'):
-    tvio_remove_output = _libs['thingiverseio'].tvio_remove_output
-    tvio_remove_output.argtypes = [c_int]
-    tvio_remove_output.restype = c_int
+# /usr/include/thingiverseio.h: 461
+if hasattr(_libs['thingiverseio'], 'tvio_output_connected'):
+    tvio_output_connected = _libs['thingiverseio'].tvio_output_connected
+    tvio_output_connected.argtypes = [c_int, POINTER(c_int)]
+    tvio_output_connected.restype = c_int
 
-# /usr/include/thingiverseio.h: 272
-if hasattr(_libs['thingiverseio'], 'tvio_request_available'):
-    tvio_request_available = _libs['thingiverseio'].tvio_request_available
-    tvio_request_available.argtypes = [c_int, POINTER(c_int)]
-    tvio_request_available.restype = c_int
+# /usr/include/thingiverseio.h: 472
+if hasattr(_libs['thingiverseio'], 'tvio_output_uuid'):
+    tvio_output_uuid = _libs['thingiverseio'].tvio_output_uuid
+    tvio_output_uuid.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_output_uuid.restype = c_int
 
-# /usr/include/thingiverseio.h: 283
-if hasattr(_libs['thingiverseio'], 'tvio_get_next_request_id'):
-    tvio_get_next_request_id = _libs['thingiverseio'].tvio_get_next_request_id
-    tvio_get_next_request_id.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_get_next_request_id.restype = c_int
+# /usr/include/thingiverseio.h: 484
+if hasattr(_libs['thingiverseio'], 'tvio_output_interface'):
+    tvio_output_interface = _libs['thingiverseio'].tvio_output_interface
+    tvio_output_interface.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_output_interface.restype = c_int
 
-# /usr/include/thingiverseio.h: 294
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_request_function'):
-    tvio_retrieve_request_function = _libs['thingiverseio'].tvio_retrieve_request_function
-    tvio_retrieve_request_function.argtypes = [c_int, String, POINTER(POINTER(c_char)), POINTER(c_int)]
-    tvio_retrieve_request_function.restype = c_int
+# /usr/include/thingiverseio.h: 494
+if hasattr(_libs['thingiverseio'], 'tvio_output_request_available'):
+    tvio_output_request_available = _libs['thingiverseio'].tvio_output_request_available
+    tvio_output_request_available.argtypes = [c_int, POINTER(c_int)]
+    tvio_output_request_available.restype = c_int
 
-# /usr/include/thingiverseio.h: 306
-if hasattr(_libs['thingiverseio'], 'tvio_retrieve_request_params'):
-    tvio_retrieve_request_params = _libs['thingiverseio'].tvio_retrieve_request_params
-    tvio_retrieve_request_params.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
-    tvio_retrieve_request_params.restype = c_int
+# /usr/include/thingiverseio.h: 505
+if hasattr(_libs['thingiverseio'], 'tvio_output_request_id'):
+    tvio_output_request_id = _libs['thingiverseio'].tvio_output_request_id
+    tvio_output_request_id.argtypes = [c_int, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_output_request_id.restype = c_int
 
-# /usr/include/thingiverseio.h: 318
-if hasattr(_libs['thingiverseio'], 'tvio_reply'):
-    tvio_reply = _libs['thingiverseio'].tvio_reply
-    tvio_reply.argtypes = [c_int, String, POINTER(None), c_int]
-    tvio_reply.restype = c_int
+# /usr/include/thingiverseio.h: 516
+if hasattr(_libs['thingiverseio'], 'tvio_output_request_function'):
+    tvio_output_request_function = _libs['thingiverseio'].tvio_output_request_function
+    tvio_output_request_function.argtypes = [c_int, String, POINTER(POINTER(c_char)), POINTER(c_int)]
+    tvio_output_request_function.restype = c_int
 
-# /usr/include/thingiverseio.h: 332
-if hasattr(_libs['thingiverseio'], 'tvio_emit'):
-    tvio_emit = _libs['thingiverseio'].tvio_emit
-    tvio_emit.argtypes = [c_int, String, POINTER(None), c_int, POINTER(None), c_int]
-    tvio_emit.restype = c_int
+# /usr/include/thingiverseio.h: 528
+if hasattr(_libs['thingiverseio'], 'tvio_output_request_params'):
+    tvio_output_request_params = _libs['thingiverseio'].tvio_output_request_params
+    tvio_output_request_params.argtypes = [c_int, String, POINTER(POINTER(None)), POINTER(c_int)]
+    tvio_output_request_params.restype = c_int
+
+# /usr/include/thingiverseio.h: 540
+if hasattr(_libs['thingiverseio'], 'tvio_output_reply'):
+    tvio_output_reply = _libs['thingiverseio'].tvio_output_reply
+    tvio_output_reply.argtypes = [c_int, String, POINTER(None), c_int]
+    tvio_output_reply.restype = c_int
+
+# /usr/include/thingiverseio.h: 554
+if hasattr(_libs['thingiverseio'], 'tvio_output_emit'):
+    tvio_output_emit = _libs['thingiverseio'].tvio_output_emit
+    tvio_output_emit.argtypes = [c_int, String, POINTER(None), c_int, POINTER(None), c_int]
+    tvio_output_emit.restype = c_int
+
+# /usr/include/thingiverseio.h: 566
+if hasattr(_libs['thingiverseio'], 'tvio_output_property_set'):
+    tvio_output_property_set = _libs['thingiverseio'].tvio_output_property_set
+    tvio_output_property_set.argtypes = [c_int, String, POINTER(None), c_int]
+    tvio_output_property_set.restype = c_int
 
 # No inserted files
 

@@ -2,10 +2,16 @@ import pythingiverseio
 import time
 from unittest import TestCase
 
-DESCRIPTOR = "func SayHello(Greeting string) (Answer string)"
+DESCRIPTOR = "function SayHello(Greeting string) (Answer string)"
 
 
 class TestPythingiverseio(TestCase):
+
+    def test_version(self):
+        maj, main, _ = pythingiverseio.version()
+        self.assertEqual(maj, 0)
+        self.assertNotEqual(min, 0)
+
     def test_basics(self):
         input = pythingiverseio.Input(DESCRIPTOR)
         self.assertTrue(input is not -1)
