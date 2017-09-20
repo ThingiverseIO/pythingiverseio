@@ -139,5 +139,15 @@ class Input(threading.Thread):
                                             c_char_p(function.encode("ascii"))
                                             ))
 
+    def start_observation(self, property):
+        _check_error(tvio_input_change_start_observe(self._input,
+                                                     c_char_p(property.encode("ascii"))
+                                                     ))
+
+    def stop_observation(self, function):
+        _check_error(tvio_input_change_stop_observe(self._input,
+                                                    c_char_p(property.encode("ascii"))
+                                                    ))
+
     def listen(self, timeout=None):
         return self._listen_q.get(timeout=timeout)

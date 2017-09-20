@@ -1,10 +1,15 @@
 import pythingiverseio
 
-DESCRIPTOR = "func SayHello(Greeting string) (Answer string)"
+DESCRIPTOR = """
+function SayHello(Greeting string) (Answer string)
+property Mood: Feeling string
+tag example_tag
+"""
 
 
 def main():
     output = pythingiverseio.Output(DESCRIPTOR)
+    output.set_property("Mood", {"Feeling":"Extraordinary"})
 
     while True:
         request = output.get_request()

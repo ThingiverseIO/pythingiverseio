@@ -17,18 +17,20 @@
 
 from .error import _check_error
 from .libthingiverseio import (
-                               tvio_new_output,
-                               tvio_output_remove,
-                               tvio_output_request_available,
-                               tvio_output_request_function,
-                               tvio_output_request_id,
-                               tvio_output_request_params,
-                               )
+    tvio_new_output,
+    tvio_output_property_set,
+    tvio_output_remove,
+    tvio_output_request_available,
+    tvio_output_request_function,
+    tvio_output_request_id,
+    tvio_output_request_params,
+)
 from ctypes import byref, c_int, c_char_p, c_void_p, string_at
 from .descriptor import check_descriptor
 from .request import Request
 import threading
 from queue import Queue
+import umsgpack
 
 _author__ = 'Joern Weissenborn'
 
@@ -98,3 +100,9 @@ class Output(threading.Thread):
 
     def get_request(self, timeout=None):
         return self._request_q.get(timeout=timeout)
+
+    def set_property(self, name, value):
+        packed = umsgpack.packb(value)
+        _check_error(tvio_output_property_set(c_int(self._output),
+                                              c_char_p(name.encode('ascii')),
+                                              packed, len(packed)))
