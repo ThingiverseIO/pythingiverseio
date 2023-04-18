@@ -1,4 +1,6 @@
 *.swp
+.envrc
+.direnv/
 
 # Compiled python modules.
 *.pyc
